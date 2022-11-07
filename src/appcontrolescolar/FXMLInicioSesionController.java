@@ -4,9 +4,11 @@
  */
 package appcontrolescolar;
 
+import appcontrolescolar.modelo.ConexionBD;
 import appcontrolescolar.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,10 +23,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- *
- * @author franz
- */
+
 public class FXMLInicioSesionController implements Initializable {
     
     @FXML
@@ -39,6 +38,7 @@ public class FXMLInicioSesionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
 
     @FXML
@@ -55,12 +55,20 @@ public class FXMLInicioSesionController implements Initializable {
             valido = false;
             lbAlertaPassword.setText("Este campo es requerido.");
         }
-        if(valido){
-            irPantallaPrincipal();
+        if(valido)
+            verificarCredencialesUsuario(noPersonal, password);
+    }
+    
+    private void verificarCredencialesUsuario(String noPersonal, String password){
+        //temp
+        Connection conexionPrueba = ConexionBD.abrirConexionBD();
+        if(conexionPrueba != null){
+            Utilidades.mostrarAlestaSimple("Conexion correcta", "conexion Lista", 
+                    Alert.AlertType.INFORMATION);
         }
     }
     
-    public void irPantallaPrincipal(){
+    private void irPantallaPrincipal(){
         try{
             //Cualquier que no sea un .class es un recurso
             //Si se quiere mantener la navegacion se debe mantener el mismo escenario, pero pasando la escena a uno nuevo y despues regresando la escena al mismo escenario

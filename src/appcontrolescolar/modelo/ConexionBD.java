@@ -7,7 +7,6 @@ package appcontrolescolar.modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
 
 public class ConexionBD {
     private static String driver="com.mysql.jdbc.Driver";
@@ -28,7 +27,7 @@ public class ConexionBD {
         Connection conexionBD = null;
         try {
             Class.forName(driver);
-            conexionBD = DriverManager.getConnection(bd, usuario, password);
+            conexionBD = DriverManager.getConnection(urlConexion, usuario, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }catch (SQLException e){

@@ -18,11 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author franz
- */
+
 public class FXMLPrincipalController implements Initializable {
 
     /**

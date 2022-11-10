@@ -65,6 +65,7 @@ public class FXMLInicioSesionController implements Initializable {
         if(conexionPrueba != null){
             Utilidades.mostrarAlestaSimple("Conexion correcta", "conexion Lista", 
                     Alert.AlertType.INFORMATION);
+            irPantallaPrincipal();
         }
     }
     

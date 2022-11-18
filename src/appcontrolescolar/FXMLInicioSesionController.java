@@ -5,10 +5,13 @@
 package appcontrolescolar;
 
 import appcontrolescolar.modelo.ConexionBD;
+import appcontrolescolar.modelo.dao.UsuarioDAO;
+import appcontrolescolar.modelo.pojo.Usuario;
 import appcontrolescolar.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,21 +63,27 @@ public class FXMLInicioSesionController implements Initializable {
     }
     
     private void verificarCredencialesUsuario(String noPersonal, String password){
-        //temp
-        Connection conexionPrueba = ConexionBD.abrirConexionBD();
-        if(conexionPrueba != null){
-            Utilidades.mostrarAlestaSimple("Conexion correcta", "conexion Lista", 
-                    Alert.AlertType.INFORMATION);
-            irPantallaPrincipal();
+        try {
+            Usuario usuarioSesion = UsuarioDAO.verificarUsuario(noPersonal, password);
+            if(usuarioSesion.getIdUsuario() > 0)
+                irPantallaPrincipal(usuarioSesion.toString());
+            else
+                Utilidades.mostrarAlestaSimple("Credenciales incorrectas", 
+                        "El numero de personal y/o contraseña es incorrecto, favor", 
+                        Alert.AlertType.WARNING);
+        } catch (SQLException | NullPointerException e) {
+                Utilidades.mostrarAlestaSimple("Error de conexión", "Hubo un error "
+                        + "en el proceso de comunicación, intentelo más tarde", 
+                        Alert.AlertType.ERROR);
         }
     }
     
-    private void irPantallaPrincipal(){
+    private void irPantallaPrincipal(String nombre){
         try{
             //Cualquier que no sea un .class es un recurso
             //Si se quiere mantener la navegacion se debe mantener el mismo escenario, pero pasando la escena a uno nuevo y despues regresando la escena al mismo escenario
             //Si no se quiere mantener la navegacion se debe crear otro escenario
-            Utilidades.mostrarAlestaSimple("Bienvenido", "Credenciales correctas, bienvenido al sistema", 
+            Utilidades.mostrarAlestaSimple("Bienvenido", "Credenciales correctas, bienvenido "+nombre+" al sistema", 
                 Alert.AlertType.INFORMATION);
             Parent vista = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
             Scene escenaPrincipal = new Scene(vista);

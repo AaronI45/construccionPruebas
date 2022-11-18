@@ -1,12 +1,19 @@
 
 package appcontrolescolar.alumno;
 
+import appcontrolescolar.modelo.dao.FacultadDAO;
+import appcontrolescolar.modelo.pojo.Carrera;
+import appcontrolescolar.modelo.pojo.Facultad;
 import appcontrolescolar.util.Utilidades;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,19 +45,31 @@ public class FXMLFormularioAlumnoController implements Initializable {
     @FXML
     private TextField tfFechaNacimiento;
     @FXML
-    private ComboBox<?> cbFacultad;
+    private ComboBox<Facultad> cbFacultad;
     @FXML
-    private ComboBox<?> cbCarrera;
+    private ComboBox<Carrera> cbCarrera;
     @FXML
     private ImageView imgFoto;
 
     private File archivoFoto;
 
+    private ObservableList<Facultad> listaFacultades;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        cargarListaFacultades();
     }    
 
+    private void cargarListaFacultades(){
+        listaFacultades = FXCollections.observableArrayList();
+        try {
+            ArrayList<Facultad> facultadesBD = FacultadDAO.recuperarFacultades();
+            listaFacultades.addAll(facultadesBD);
+            cbFacultad.setItems(listaFacultades);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
     
     @FXML

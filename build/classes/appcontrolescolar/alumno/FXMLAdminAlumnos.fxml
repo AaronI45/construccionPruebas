@@ -8,15 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="728.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="appcontrolescolar.alumno.FXMLAdminAlumnosController">
+<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appcontrolescolar.alumno.FXMLAdminAlumnosController">
    <children>
       <Label layoutX="45.0" layoutY="26.0" text="Administración de alumnos">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfBuscar" layoutX="45.0" layoutY="84.0" prefHeight="25.0" prefWidth="176.0" text="Buscar alumno" />
+      <TextField fx:id="tfBuscar" layoutX="45.0" layoutY="84.0" prefHeight="25.0" prefWidth="176.0" promptText="Buscar alumno" />
       <Button layoutX="239.0" layoutY="84.0" mnemonicParsing="false" onAction="#clicBtnAgregar" prefHeight="25.0" prefWidth="120.0" text="Agregar" />
       <Button layoutX="377.0" layoutY="84.0" mnemonicParsing="false" onAction="#clicBtnModificar" prefHeight="25.0" prefWidth="120.0" text="Modificar" />
       <Button layoutX="523.0" layoutY="84.0" mnemonicParsing="false" onAction="#clicBtnEliminar" prefHeight="25.0" prefWidth="120.0" text="Eliminar" />

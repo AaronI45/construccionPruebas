@@ -5,6 +5,7 @@
 package appcontrolescolar.modelo.dao;
 
 import appcontrolescolar.modelo.ConexionBD;
+import appcontrolescolar.modelo.pojo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,8 @@ import java.sql.SQLException;
  * @author Aaron
  */
 public class UsuarioDAO {
-    public static void verificarUsuario(String usuario, String password){
+    public static Usuario verificarUsuario(String usuario, String password) throws SQLException{
+        Usuario usuarioSesion = null;
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try {
@@ -26,10 +28,21 @@ public class UsuarioDAO {
                 consultaLogin.setString(1, usuario);
                 consultaLogin.setString(2, password);
                 ResultSet resultadoConsulta = consultaLogin.executeQuery();
-                
+                usuarioSesion = new Usuario();
+                if(resultadoConsulta.next()){
+                    usuarioSesion.setIdUsuario(resultadoConsulta.getInt("idUsuario"));
+                    usuarioSesion.setNombre(resultadoConsulta.getString("nombre"));
+                    usuarioSesion.setApellidoPaterno(resultadoConsulta.getString("apellidoPaterno"));
+                    usuarioSesion.setApellidoMaterno(resultadoConsulta.getString("apellidoMaterno"));
+                }else{
+                    usuarioSesion.setIdUsuario(-1);
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally{
+                conexionBD.close();
             }
         }
+        return usuarioSesion;
     }
 }

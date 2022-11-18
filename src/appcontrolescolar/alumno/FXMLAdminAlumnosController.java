@@ -4,10 +4,18 @@
  */
 package appcontrolescolar.alumno;
 
+import appcontrolescolar.modelo.dao.AlumnoDAO;
+import appcontrolescolar.modelo.dao.FacultadDAO;
+import appcontrolescolar.modelo.pojo.Alumno;
+import appcontrolescolar.modelo.pojo.Facultad;
 import appcontrolescolar.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +26,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -27,7 +36,7 @@ public class FXMLAdminAlumnosController implements Initializable {
     @FXML
     private TextField tfBuscar;
     @FXML
-    private TableView<?> tvAlumnos;
+    private TableView<Alumno> tvAlumnos;
     @FXML
     private TableColumn colMatricula;
     @FXML
@@ -43,12 +52,47 @@ public class FXMLAdminAlumnosController implements Initializable {
     @FXML
     private TableColumn colFacultad;
 
+    ObservableList<Alumno> listaAlumnos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        listaAlumnos = FXCollections.observableArrayList();
+        configurarTabla();
+        cargarDatosTabla();
+        //pruebaFacultad();
     }    
-
+    
+    private void configurarTabla(){
+        colMatricula.setCellValueFactory(new PropertyValueFactory("matricula"));
+        colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+        colApellidoPaterno.setCellValueFactory(new PropertyValueFactory("apellidoPaterno"));
+        colApellidoMaterno.setCellValueFactory(new PropertyValueFactory("apellidoMaterno"));
+        colCorreo.setCellValueFactory(new PropertyValueFactory("correo"));
+        colCarrera.setCellValueFactory(new PropertyValueFactory("carrera"));
+        colFacultad.setCellValueFactory(new PropertyValueFactory("facultad"));
+    }
+    
+    private void cargarDatosTabla(){
+        try {
+            ArrayList<Alumno> alumnoBD = AlumnoDAO.obtenerAlumnos();
+            listaAlumnos.addAll(alumnoBD);
+            tvAlumnos.setItems(listaAlumnos);
+        } catch (SQLException | NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+    
+//    private void pruebaFacultad(){
+//        try {
+//            ArrayList<Facultad> facultades = FacultadDAO.recuperarFacultades();
+//            for (int i = 0 ; i<facultades.size(); i++){
+//                System.out.println(facultades.get(i).getNombre());
+//            }
+//        } catch (SQLException | NullPointerException e) {
+//            e.printStackTrace();
+//        }
+//    }
+    
     @FXML
     private void clicBtnAgregar(ActionEvent event) {
         irFormulario();

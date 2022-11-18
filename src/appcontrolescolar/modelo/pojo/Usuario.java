@@ -56,6 +56,11 @@ public class Usuario {
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
+
+    @Override
+    public String toString() {
+        return  nombre +" "+apellidoPaterno+" "+apellidoMaterno;
+    }
     
     
 }

@@ -1,6 +1,7 @@
 
 package appcontrolescolar.alumno;
 
+import appcontrolescolar.modelo.dao.CarreraDAO;
 import appcontrolescolar.modelo.dao.FacultadDAO;
 import appcontrolescolar.modelo.pojo.Carrera;
 import appcontrolescolar.modelo.pojo.Facultad;
@@ -12,6 +13,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -55,10 +58,22 @@ public class FXMLFormularioAlumnoController implements Initializable {
 
     private ObservableList<Facultad> listaFacultades;
     
+    private ObservableList<Carrera> listaCarreras;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarListaFacultades();
-    }    
+        
+        cbFacultad.valueProperty().addListener(new ChangeListener<Facultad>(){
+            
+            @Override
+            public void changed(ObservableValue<? extends Facultad> observable, Facultad oldValue, Facultad newValue) {
+                if(newValue != null){
+                    cargarListaCarreras(newValue.getIdFacultad());
+                }            
+            }
+        });    
+    }
 
     private void cargarListaFacultades(){
         listaFacultades = FXCollections.observableArrayList();
@@ -71,6 +86,16 @@ public class FXMLFormularioAlumnoController implements Initializable {
         }
     }
     
+    private void cargarListaCarreras(int idFacultad){
+        listaCarreras = FXCollections.observableArrayList();
+        try {
+            ArrayList<Carrera> carrerasBD = CarreraDAO.obtenerCarreraFacultad(idFacultad);
+            listaCarreras.addAll(carrerasBD);
+            cbCarrera.setItems(listaCarreras);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
     @FXML
     private void clicSeleccionFoto(ActionEvent event) {

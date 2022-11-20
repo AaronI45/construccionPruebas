@@ -6,6 +6,10 @@ package appcontrolescolar.modelo.dao;
 
 import appcontrolescolar.modelo.ConexionBD;
 import appcontrolescolar.modelo.pojo.Alumno;
+import appcontrolescolar.modelo.pojo.ResultadoOperacion;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,4 +59,50 @@ public class AlumnoDAO {
         }
         return alumnosBD;
     }
+    
+    public static ResultadoOperacion registrarAlumno(Alumno alumnoNuevo, File foto) throws SQLException{
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setNumeroFilasAfectadas(-1);
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String sentencia = "INSERT INTO alumno (matricula, nombre, apellidoPaterno, "
+                        + "apellidoMaterno, correo, fechaNacimiento, idCarrera, foto) "
+                        + "VALUES (?,?,?,?,?,?,?,?)";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1, alumnoNuevo.getMatricula());
+                prepararSentencia.setString(2, alumnoNuevo.getNombre());
+                prepararSentencia.setString(3, alumnoNuevo.getApellidoPaterno());
+                prepararSentencia.setString(4, alumnoNuevo.getApellidoMaterno());
+                prepararSentencia.setString(5, alumnoNuevo.getCorreo());
+                prepararSentencia.setString(6, alumnoNuevo.getFechaNacimiento());
+                prepararSentencia.setInt(7, alumnoNuevo.getIdCarrera());
+                
+                FileInputStream fotoAlumno = new FileInputStream(foto);
+                prepararSentencia.setBlob(8, fotoAlumno);
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if (numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setMensaje("Alumno registrado correctamente.");
+                    respuesta.setNumeroFilasAfectadas(numeroFilas);
+                }else{
+                    respuesta.setMensaje("No se pudo registrar la informacion del alumno.");
+                }
+            } catch (SQLException e) {
+                respuesta.setMensaje(e.getMessage());
+            }catch(FileNotFoundException f){
+                respuesta.setMensaje(f.getMessage());
+            }
+            finally{
+                conexionBD.close();
+            }
+        }else{
+            respuesta.setMensaje("Por el momento no hay conexion a la base de datos");
+        }
+        return respuesta;
+    }
+    
+    //TODO elminiar
+    //TODO editar por id
 }

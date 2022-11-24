@@ -4,13 +4,11 @@
  */
 package appcontrolescolar;
 
-import appcontrolescolar.modelo.ConexionBD;
 import appcontrolescolar.modelo.dao.UsuarioDAO;
 import appcontrolescolar.modelo.pojo.Usuario;
 import appcontrolescolar.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -80,9 +77,6 @@ public class FXMLInicioSesionController implements Initializable {
     
     private void irPantallaPrincipal(String nombre){
         try{
-            //Cualquier que no sea un .class es un recurso
-            //Si se quiere mantener la navegacion se debe mantener el mismo escenario, pero pasando la escena a uno nuevo y despues regresando la escena al mismo escenario
-            //Si no se quiere mantener la navegacion se debe crear otro escenario
             Utilidades.mostrarAlestaSimple("Bienvenido", "Credenciales correctas, bienvenido "+nombre+" al sistema", 
                 Alert.AlertType.INFORMATION);
             Parent vista = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
@@ -94,26 +88,6 @@ public class FXMLInicioSesionController implements Initializable {
             excepcion.printStackTrace();
             Utilidades.mostrarAlestaSimple("Error", "No se puede mostrar la pantalla principal", 
                     Alert.AlertType.ERROR);
-        }
-    }
-    
-    /*
-    **Con escemarios distintos
-    */
-    public void irPantallaPrincipal2(){
-        try{
-            //Cualquier que no sea un .class es un recurso
-            //Si se quiere mantener la navegacion se debe mantener el mismo escenario, pero pasando la escena a uno nuevo y despues regresando la escena al mismo escenario
-            //Si no se quiere mantener la navegacion se debe crear otro escenario
-
-            Parent vista = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
-            Scene escenaPrincipal = new Scene(vista);
-            //Stage escenarioBase = (Stage) txtNoPersonal.getScene().getWindow();//Casteo es una conversion
-            Stage escenarioBase = new Stage();
-            escenarioBase.setScene(escenaPrincipal);
-            escenarioBase.show();
-        }catch(IOException excepcion){
-            excepcion.printStackTrace();
         }
     }
     

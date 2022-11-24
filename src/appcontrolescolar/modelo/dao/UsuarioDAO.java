@@ -11,10 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author Aaron
- */
 public class UsuarioDAO {
     public static Usuario verificarUsuario(String usuario, String password) throws SQLException{
         Usuario usuarioSesion = null;

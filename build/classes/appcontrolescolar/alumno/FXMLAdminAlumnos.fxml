@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appcontrolescolar.alumno.FXMLAdminAlumnosController">
+<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="999.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appcontrolescolar.alumno.FXMLAdminAlumnosController">
    <children>
       <Label layoutX="45.0" layoutY="26.0" text="Administración de alumnos">
          <font>
@@ -19,15 +19,15 @@
       <Button layoutX="239.0" layoutY="84.0" mnemonicParsing="false" onAction="#clicBtnAgregar" prefHeight="25.0" prefWidth="120.0" text="Agregar" />
       <Button layoutX="377.0" layoutY="84.0" mnemonicParsing="false" onAction="#clicBtnModificar" prefHeight="25.0" prefWidth="120.0" text="Modificar" />
       <Button layoutX="523.0" layoutY="84.0" mnemonicParsing="false" onAction="#clicBtnEliminar" prefHeight="25.0" prefWidth="120.0" text="Eliminar" />
-      <TableView fx:id="tvAlumnos" layoutX="45.0" layoutY="135.0" prefHeight="350.0" prefWidth="644.0">
+      <TableView fx:id="tvAlumnos" layoutX="45.0" layoutY="149.0" prefHeight="504.0" prefWidth="905.0">
         <columns>
-          <TableColumn fx:id="colMatricula" prefWidth="91.0" text="Matricula" />
-          <TableColumn fx:id="colNombre" prefWidth="77.0" text="Nombre" />
-            <TableColumn fx:id="colApellidoPaterno" prefWidth="129.0" text="Apellido paterno" />
-            <TableColumn fx:id="colApellidoMaterno" prefWidth="121.0" text="Apellido materno" />
-            <TableColumn fx:id="colCorreo" prefWidth="75.0" text="Correo" />
-            <TableColumn fx:id="colCarrera" prefWidth="75.0" text="Carrera" />
-            <TableColumn fx:id="colFacultad" prefWidth="75.0" text="Facultad" />
+          <TableColumn fx:id="colMatricula" prefWidth="103.0" text="Matricula" />
+          <TableColumn fx:id="colNombre" prefWidth="109.0" text="Nombre" />
+            <TableColumn fx:id="colApellidoPaterno" minWidth="0.0" prefWidth="145.0" text="Apellido paterno" />
+            <TableColumn fx:id="colApellidoMaterno" prefWidth="132.0" text="Apellido materno" />
+            <TableColumn fx:id="colCorreo" minWidth="0.0" prefWidth="164.0" text="Correo" />
+            <TableColumn fx:id="colCarrera" minWidth="7.0" prefWidth="97.0" text="Carrera" />
+            <TableColumn fx:id="colFacultad" minWidth="9.0" prefWidth="154.0" text="Facultad" />
         </columns>
       </TableView>
    </children>

@@ -12,10 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Aaron
- */
 public class CarreraDAO {
     public static ArrayList<Carrera> obtenerCarreraFacultad(int idFacultad) throws SQLException{
         ArrayList<Carrera> carreras = null;

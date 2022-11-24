@@ -1,10 +1,13 @@
 
 package appcontrolescolar.alumno;
 
+import appcontrolescolar.modelo.dao.AlumnoDAO;
 import appcontrolescolar.modelo.dao.CarreraDAO;
 import appcontrolescolar.modelo.dao.FacultadDAO;
+import appcontrolescolar.modelo.pojo.Alumno;
 import appcontrolescolar.modelo.pojo.Carrera;
 import appcontrolescolar.modelo.pojo.Facultad;
+import appcontrolescolar.modelo.pojo.ResultadoOperacion;
 import appcontrolescolar.util.Utilidades;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -54,7 +57,7 @@ public class FXMLFormularioAlumnoController implements Initializable {
     @FXML
     private ImageView imgFoto;
 
-    private File archivoFoto;
+    private File archivoFoto = null;
 
     private ObservableList<Facultad> listaFacultades;
     
@@ -124,10 +127,34 @@ public class FXMLFormularioAlumnoController implements Initializable {
 
     @FXML
     private void clicGuardar(ActionEvent event) {
+        Alumno alumnoNuevo= new Alumno();
+        alumnoNuevo.setMatricula(tfMatricula.getText());
+        alumnoNuevo.setNombre(tfNombre.getText());
+        alumnoNuevo.setApellidoPaterno(tfApellidoPaterno.getText());
+        alumnoNuevo.setApellidoMaterno(tfApellidoMaterno.getText());
+        alumnoNuevo.setCorreo(tfCorreo.getText());
+        alumnoNuevo.setCorreo(tfCorreo.getText());
+        alumnoNuevo.setFechaNacimiento(tfFechaNacimiento.getText());
+        alumnoNuevo.setIdCarrera(cbCarrera.getValue().getIdCarrera());
+        if(archivoFoto != null){
+            try {
+            ResultadoOperacion respuesta = AlumnoDAO.registrarAlumno(alumnoNuevo, archivoFoto);
+            
+            Utilidades.mostrarAlestaSimple("Registro exitoso", 
+                    "El usuario se ha registrado exitosamente", 
+                    Alert.AlertType.INFORMATION);
+                System.out.println(respuesta.getMensaje());
+                System.out.println(respuesta.getNumeroFilasAfectadas());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     private void clicCancelar(ActionEvent event) {
+        Stage escenarioBase = (Stage)imgFoto.getScene().getWindow();
+        escenarioBase.close();
     }
     
 }

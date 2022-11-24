@@ -60,6 +60,7 @@ public class AlumnoDAO {
         return alumnosBD;
     }
     
+    
     public static ResultadoOperacion registrarAlumno(Alumno alumnoNuevo, File foto) throws SQLException{
         ResultadoOperacion respuesta = new ResultadoOperacion();
         respuesta.setError(true);
@@ -104,5 +105,31 @@ public class AlumnoDAO {
     }
     
     //TODO elminiar
+    public static ResultadoOperacion elmininarAlumnoPorMatricula(String matricula) throws SQLException{
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setNumeroFilasAfectadas(-1);
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if (conexionBD != null){
+            try {
+                String sentencia = "DELETE FROM alumno WHERE matricula = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1, matricula);
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if (numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setMensaje("Alumno eliminado correctamente");
+                    respuesta.setNumeroFilasAfectadas(numeroFilas);
+                }else{
+                    respuesta.setMensaje("No se pudo eliminar la información del alumno");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }
+        return respuesta;
+    }
     //TODO editar por id
 }

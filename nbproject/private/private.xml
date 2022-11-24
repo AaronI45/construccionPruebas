@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/super/Downloads/AppControlEscolar/AppControlEscolar/AppControlEscolar/src/appcontrolescolar/modelo/pojo/Carrera.java</file>
-            <file>file:/C:/Users/super/Downloads/AppControlEscolar/AppControlEscolar/AppControlEscolar/src/appcontrolescolar/modelo/dao/AlumnoDAO.java</file>
-            <file>file:/C:/Users/super/Downloads/AppControlEscolar/AppControlEscolar/AppControlEscolar/src/appcontrolescolar/alumno/FXMLFormularioAlumnoController.java</file>
-            <file>file:/C:/Users/super/Downloads/AppControlEscolar/AppControlEscolar/AppControlEscolar/src/appcontrolescolar/modelo/pojo/Alumno.java</file>
-            <file>file:/C:/Users/super/Downloads/AppControlEscolar/AppControlEscolar/AppControlEscolar/src/appcontrolescolar/modelo/pojo/ResultadoOperacion.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/FXMLPrincipalController.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/modelo/pojo/Alumno.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/modelo/dao/UsuarioDAO.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/modelo/dao/CarreraDAO.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/modelo/dao/FacultadDAO.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/alumno/FXMLFormularioAlumnoController.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/modelo/dao/AlumnoDAO.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/alumno/FXMLAdminAlumnosController.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/modelo/ConexionBD.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/FXMLInicioSesionController.java</file>
+            <file>file:/C:/repos/construccionPruebas/src/appcontrolescolar/AppControlEscolar.java</file>
         </group>
     </open-files>
 </project-private>

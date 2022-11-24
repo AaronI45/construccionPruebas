@@ -12,10 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Aaron
- */
 public class FacultadDAO {
     public static ArrayList<Facultad> recuperarFacultades() throws SQLException{
         ArrayList <Facultad> facultades = null;

@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="830.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="appcontrolescolar.alumno.FXMLFormularioAlumnoController">
+<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appcontrolescolar.alumno.FXMLFormularioAlumnoController">
    <children>
-      <Label fx:id="lbInicial" layoutX="32.0" layoutY="32.0" text="Agregar alumno">
+      <Label layoutX="32.0" layoutY="32.0" text="Agregar alumno">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

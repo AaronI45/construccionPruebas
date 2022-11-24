@@ -59,7 +59,6 @@ public class FXMLAdminAlumnosController implements Initializable {
         listaAlumnos = FXCollections.observableArrayList();
         configurarTabla();
         cargarDatosTabla();
-        //pruebaFacultad();
     }    
     
     private void configurarTabla(){
@@ -82,17 +81,6 @@ public class FXMLAdminAlumnosController implements Initializable {
         }
     }
     
-//    private void pruebaFacultad(){
-//        try {
-//            ArrayList<Facultad> facultades = FacultadDAO.recuperarFacultades();
-//            for (int i = 0 ; i<facultades.size(); i++){
-//                System.out.println(facultades.get(i).getNombre());
-//            }
-//        } catch (SQLException | NullPointerException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    
     @FXML
     private void clicBtnAgregar(ActionEvent event) {
         irFormulario();
@@ -100,6 +88,7 @@ public class FXMLAdminAlumnosController implements Initializable {
 
     @FXML
     private void clicBtnModificar(ActionEvent event) {
+        tvAlumnos.getI();
     }
 
     @FXML
